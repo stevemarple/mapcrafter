@@ -2169,13 +2169,19 @@ void BlockImages::createFlowerPot() { // id 140
 }
 
 void BlockImages::createHopper() { // id 154
-	BlockImage block;
-	block.setFace(FACE_WEST, textures.HOPPER_OUTSIDE, 1, 0);
-	block.setFace(FACE_SOUTH, textures.HOPPER_OUTSIDE, -1, 0);
-	block.setFace(FACE_TOP, textures.HOPPER_TOP, 0, 9);
-	setBlockImage(154, 0, buildImage(block));
-}
+	RGBAImage outside = textures.HOPPER_OUTSIDE;
+	RGBAImage inside = textures.HOPPER_INSIDE;
+	RGBAImage top = textures.HOPPER_TOP;
 
+	RGBAImage block(getBlockImageSize(), getBlockImageSize());
+	blitFace(block, FACE_NORTH, inside, 0, 0, true, dleft, dright);
+	blitFace(block, FACE_EAST, inside, 0, 0, true, dleft, dright);
+	blitFace(block, FACE_TOP, top, 0, 0, true, dleft, dright);
+	blitFace(block, FACE_SOUTH, outside, 0, 0, true, dleft, dright);
+	blitFace(block, FACE_WEST, outside, 0, 0, true, dleft, dright);
+	setBlockImage(154, 0, block);	
+}
+  
 void BlockImages::createLargePlant(uint16_t data, const RGBAImage& texture, const RGBAImage& top_texture) { // id 175
 	createItemStyleBlock(175, data, texture);
 	createItemStyleBlock(175, data | LARGEPLANT_TOP, top_texture);
