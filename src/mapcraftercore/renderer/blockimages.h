@@ -388,6 +388,7 @@ private:
 	void createTripwireHook(); // id 131
 	void createBeacon(); // id 138
 	void createFlowerPot(); // id 140
+	void createHopper(); // id 154
 	void createLargePlant(uint16_t data, const RGBAImage& texture, const RGBAImage& top_texture); // id 175
 
 	void loadBlocks();

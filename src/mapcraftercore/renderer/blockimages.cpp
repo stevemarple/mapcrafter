@@ -653,6 +653,8 @@ uint16_t BlockImages::filterBlockData(uint16_t id, uint16_t data) const {
 	// the light sensor shouldn't have any data, but I had problems with it...
 	else if (id == 151 || id == 178)
 		return 0;
+	else if (id == 154) // hopper
+		return 0;
 	return data;
 }
 
@@ -2166,6 +2168,14 @@ void BlockImages::createFlowerPot() { // id 140
 	}
 }
 
+void BlockImages::createHopper() { // id 154
+	BlockImage block;
+	block.setFace(FACE_WEST, textures.HOPPER_OUTSIDE, 1, 0);
+	block.setFace(FACE_SOUTH, textures.HOPPER_OUTSIDE, -1, 0);
+	block.setFace(FACE_TOP, textures.HOPPER_TOP, 0, 9);
+	setBlockImage(154, 0, buildImage(block));
+}
+
 void BlockImages::createLargePlant(uint16_t data, const RGBAImage& texture, const RGBAImage& top_texture) { // id 175
 	createItemStyleBlock(175, data, texture);
 	createItemStyleBlock(175, data | LARGEPLANT_TOP, top_texture);
@@ -2465,7 +2475,7 @@ void BlockImages::loadBlocks() {
 	createSmallerBlock(151, 0, t.DAYLIGHT_DETECTOR_SIDE, t.DAYLIGHT_DETECTOR_TOP, 0, 8); // daylight sensor
 	createBlock(152, 0, t.REDSTONE_BLOCK); // block of redstone
 	createBlock(153, 0, t.QUARTZ_ORE); // nether quartz ore
-	// id 154 // hopper
+	createHopper(); // id 154
 	// block of quartz --
 	createBlock(155, 0, t.QUARTZ_BLOCK_SIDE, t.QUARTZ_BLOCK_TOP);
 	createBlock(155, 1, t.QUARTZ_BLOCK_CHISELED, t.QUARTZ_BLOCK_CHISELED_TOP);
